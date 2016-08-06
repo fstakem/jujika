@@ -49,10 +49,15 @@ TEMPLATES = [
 WSGI_APPLICATION = 'jujika.wsgi.application'
 
 # Database
+db_password = os.environ['DB_PASSWORD']
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'jujika',
+        'USER': 'jujika_user',
+        'PASSWORD': db_password,
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
