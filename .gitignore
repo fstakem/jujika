@@ -80,3 +80,6 @@ celerybeat-schedule
 
 # virtualenv
 jujika_env/
+jujika_dev_env/
+jujika_qa_env/
+jujika_prod_env/

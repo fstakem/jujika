@@ -1,9 +1,12 @@
 # Script params
 path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+# Get env
+env=$ENV
+echo "Installing libraries for: $env"
 
 # Make sure using right virtualenv
-correct_python=$path/jujika_env/bin/python
+correct_python=$path"/envs/jujika_"$env"_env/bin/python"
 python_path=`which python`
 
 if [ $python_path != $correct_python ];
@@ -13,14 +16,17 @@ then
 fi
 
 # Install requirements
-requirements_file=$path/requirements.txt
-requirements_lock_file=$path/requirements.lock
+base_file=$path/requirements/base.txt
+requirements_file=$path/requirements/$env.txt
+requirements_lock_file=$path/requirements/$env.lock
 
 if [ -f $requirements_file ];
 then
-   echo "Loading requirements from: $requirements_file"
-   pip install -r $requirements_file 
-   pip freeze > $requirements_lock_file
+    echo "Loading requirements from: $base_file"
+    pip install -r $base_file
+    echo "Loading requirements from: $requirements_file"
+    pip install -r $requirements_file 
+    pip freeze > $requirements_lock_file
 else
    echo "Error requirements file does not exist: $requirements_file"
 fi
