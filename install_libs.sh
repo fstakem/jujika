@@ -1,12 +1,13 @@
 # Script params
 path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+app_name=`basename $path`
 
 # Get env
 env=$ENV
 echo "Installing libraries for: $env"
 
 # Make sure using right virtualenv
-correct_python=$path"/envs/jujika_"$env"_env/bin/python"
+correct_python=$path"/envs/"$app_name"_"$env"_env/bin/python"
 python_path=`which python`
 
 if [ $python_path != $correct_python ];
@@ -29,4 +30,5 @@ then
     pip freeze > $requirements_lock_file
 else
    echo "Error requirements file does not exist: $requirements_file"
+   exit 1
 fi

@@ -10,12 +10,14 @@ ALLOWED_HOSTS = []
 
 # Application definition
 INSTALLED_APPS = [
+    'socialnet',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -33,7 +35,7 @@ ROOT_URLCONF = 'jujika.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ 'templates' ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -49,14 +51,17 @@ TEMPLATES = [
 WSGI_APPLICATION = 'jujika.wsgi.application'
 
 # Database
+db_name     = os.environ['DB_NAME']
+db_user     = os.environ['DB_USER']
 db_password = os.environ['DB_PASSWORD']
+db_host     = os.environ['DB_HOST']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'jujika',
-        'USER': 'jujika_user',
+        'NAME': db_name,
+        'USER': db_user,
         'PASSWORD': db_password,
-        'HOST': 'localhost',
+        'HOST': db_host,
         'PORT': '',
     }
 }

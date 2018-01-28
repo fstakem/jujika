@@ -79,7 +79,7 @@ celerybeat-schedule
 .env
 
 # virtualenv
-jujika_env/
-jujika_dev_env/
-jujika_qa_env/
-jujika_prod_env/
+envs/
+
+# env vars
+local_env_vars.sh
